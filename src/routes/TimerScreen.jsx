@@ -1,7 +1,7 @@
 export const TimerScreen = () => {
   return (
-    <div>
-      <h1>Pagina Pomodoro</h1>
+    <div>      
+      <img className="opacity-30" src="/src/assets/under-construction.svg" alt="" />
     </div>
   )
 }
