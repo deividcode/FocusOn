@@ -23,12 +23,11 @@ export const GlobalProvider = ({children}) => {
       dispatch({
          type: 'ADD_TASK',
          payload: task
-      })
-      console.log('addTask')
+      })     
    }
 
    const changeStatusTask = (id) => { 
-      console.log("change status task")
+      
       dispatch({
          type: 'CHANGE_STATUS_TASK',
          payload: id
@@ -37,8 +36,7 @@ export const GlobalProvider = ({children}) => {
    }
 
    const deleteTask = (id) => { 
-      console.log("removeTask")
-      console.log(id)
+   
       dispatch({
          type: 'DELETE_TASK',
          payload: id

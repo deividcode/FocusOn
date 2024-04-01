@@ -19,8 +19,7 @@ export const ModalTask = ({ isOpen, setIsOpen, openModal, closeModal }) => {
   
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("aqui");
+    e.preventDefault();   
     addTask({
       id: crypto.randomUUID(),
       name: nameTask,

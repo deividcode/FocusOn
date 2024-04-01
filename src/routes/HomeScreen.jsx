@@ -3,6 +3,7 @@ import { ButtonCreateTask } from "../components/ui/tasks/ButtonCreateTask";
 import { ModalTask } from "../components/ui/tasks/ModalTask";
 import { TasksList } from "../components/ui/tasks/TasksList";
 import { TaskContext } from "../context/GlobalProvider"
+import addTaskIllustration from "../assets/add_tasks_illustration.svg";
 
 export const HomeScreen = () => {  
 
@@ -29,7 +30,8 @@ export const HomeScreen = () => {
               uncompletedTasks.length == "" 
               ? (
                 <>
-                  <img className="pt-12 opacity-20" src="/src/assets/add_tasks_illustration.svg" alt="" />
+                  <img src={addTaskIllustration} className="pt-12 opacity-20" alt="" />
+                         
                   <p className="mt-3 text-center font-medium	opacity-20">Create Your First Task</p>
                 </>
               )
