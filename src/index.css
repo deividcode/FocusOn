@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+
+   #navlinkHome > svg{
+      @apply fill-electric-violet-500
+   }
+
+   .linkActive {
+      @apply fill-electric-violet-500
+   }
+   .linkPending {
+      @apply fill-electric-violet-200
+   }
+}

@@ -1,58 +1,57 @@
 import { useState, useContext } from "react"
-import { FormInput } from "../components/ui/FormInput"
-import { TaskContext } from "../context/GlobalProvider";
-import { TasksList } from "../components/ui/TasksList";
+import { ButtonCreateTask } from "../components/ui/tasks/ButtonCreateTask";
+import { ModalTask } from "../components/ui/tasks/ModalTask";
+import { TasksList } from "../components/ui/tasks/TasksList";
+import { TaskContext } from "../context/GlobalProvider"
 
-export const HomeScreen = () => {
- 
-  const {tasks, addTask} = useContext(TaskContext)
-  
-  const [nameTask, setNameTask] = useState("") 
-  const [description, setDescription] = useState("") 
+export const HomeScreen = () => {  
 
-  const handleSubmit = (e) => { 
-    e.preventDefault()
-    console.log('aqui')
-    addTask({
-      id: crypto.randomUUID(),
-      name: nameTask,
-      description: description
-    })
-    setNameTask("")
-    setDescription("")
+  const {tasks} = useContext(TaskContext)  
+  const [isOpen, setIsOpen] = useState(false)
+
+  const completedTasks = tasks.filter((task) => task.status != false )
+  const uncompletedTasks = tasks.filter((task) => task.status != true )
+
+  function closeModal() {
+    setIsOpen(false)
+  }  
+  function openModal() {
+    setIsOpen(true)
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>        
-        <div class="flex flex-col gap-3 mt-2">
-          <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">              
-            <FormInput 
-              type="text" 
-              name="name-tasks" 
-              id="name-tasks" 
-              placeholder="Name Tasks" 
-              value={nameTask} 
-              onChange={(e) => setNameTask(e.target.value)} 
-              />
+    <div className="overflow-y-auto">
+      <div className="flex flex-col gap-8">
+        <div>
+          <p className="text-sm font-medium opacity-80">Today</p>
+          <div className="">
+            {
+              uncompletedTasks.length == "" 
+              ? (
+                <>
+                  <img className="pt-12 opacity-20" src="/src/assets/add_tasks_illustration.svg" alt="" />
+                  <p className="mt-3 text-center font-medium	opacity-20">Create Your First Task</p>
+                </>
+              )
+              : ( <TasksList tasks={uncompletedTasks} />)            
+            }
           </div>
+        </div>
 
-          <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">              
-              <FormInput 
-              type="text" 
-              name="description-tasks" 
-              id="description-tasks" 
-              placeholder="Description Tasks" 
-              value={description} 
-              onChange={(e) => setDescription(e.target.value)} 
-              />
-          </div>                             
-        </div>   
-        <button className="w-full px-5 py-3 mt-4 text-sm text-electric-50 font-semibold rounded-md text-electric-violet-50 bg-electric-violet-500" type="submit">Create Task</button>     
-      </form>
-      <div>
-        <TasksList tasks={tasks} />
+        <div>
+          <p className="text-sm font-medium opacity-60">Task Completed</p>
+          <div className="">
+            {
+              <TasksList tasks={completedTasks} />            
+            }
+          </div>
+        </div>
       </div>
+      
+      <ModalTask isOpen={isOpen} setIsOpen={setIsOpen} openModal={openModal} closeModal={closeModal} />
+      
+      <ButtonCreateTask isOpen={isOpen} setIsOpen={setIsOpen} openModal={openModal} closeModal={closeModal} /> 
+    
     </div>
   )
 }

@@ -5,16 +5,14 @@ import { MenuMobile } from "./routes/components/MenuMobile";
 import { Header } from "./routes/components/Header";
 import { GlobalProvider } from "./context/GlobalProvider";
 
-
-
 export const App = () => {
   return (
-    <div className="flex flex-col bg-electric-violet-50" style={{height: "100vh"}}>           
-      <header className="py-4">
+    <div className="flex flex-col px-1.5  bg-electric-violet-50 dark:text-white dark:bg-dark-color" style={{height: "100vh"}}>           
+      <header className="py-5">
         <Header className="flex-none" />
       </header>
 
-      <div className="p-5 grow">
+      <div className="relative p-5 grow">
          
         <Routes>
           <Route path="/" element={<GlobalProvider><HomeScreen></HomeScreen></GlobalProvider>}></Route>
@@ -22,10 +20,10 @@ export const App = () => {
           <Route path="/" element={<Navigate to="./"></Navigate>}></Route>
         </Routes>
           
-      </div>          
+      </div>              
 
-      <div className="h-12 flex gap-7 justify-evenly items-center">
-        <MenuMobile className="flex-none h-12"  />        
+      <div className="h-14 flex gap-7 justify-evenly items-center">
+        <MenuMobile className="flex-none h-12" />        
       </div>
     </div>
   )
