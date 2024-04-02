@@ -15,7 +15,7 @@ export const App = () => {
       <div className="relative p-5 grow">
          
         <Routes>
-          <Route path="/" element={<GlobalProvider><HomeScreen></HomeScreen></GlobalProvider>}></Route>
+          <Route path="/focuson" element={<GlobalProvider><HomeScreen></HomeScreen></GlobalProvider>}></Route>
           <Route path="timer" element={<TimerScreen></TimerScreen>}></Route>
           <Route path="/" element={<Navigate to="./"></Navigate>}></Route>
         </Routes>
